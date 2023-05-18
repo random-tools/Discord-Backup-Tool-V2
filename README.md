@@ -43,7 +43,6 @@ This software was made for personal **education** and **sandbox testing**
 
 
 ## <a id="features"></a>🔰 〢 Features
-# 🔱 = Join Telegram
 ```diff
 > Default:
 
