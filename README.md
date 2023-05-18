@@ -34,7 +34,7 @@ This software was made for personal **education** and **sandbox testing**
 
 ## <a id="setup"></a> 📁 〢 Setting up
 1. Install [NodeJS](https://nodejs.org/en)
-2. Install [Hawkish Files](https://github.com/random-tools/Discord-Backup-Tool-V2/archive/refs/heads/main.zip)
+2. Install [Files](https://github.com/random-tools/Discord-Backup-Tool-V2/archive/refs/heads/main.zip)
 3. Complete the configuration
 4. Click on start.bat [start.bat](https://github.com/random-tools/Discord-Backup-Tool-V2/blob/main/start.bat)
 5. Enjoy the tool
