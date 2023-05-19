@@ -70,6 +70,8 @@ This software was made for personal **education** and **sandbox testing**
 
 ```diff
 v2.0 ⋮ 2023-19-05
+- Fetch guilds after ask
+- Anti crash added
 - Bug crash load backups
 - No restart required after loading a backup
 - Adding multiple languages
@@ -79,7 +81,12 @@ v2.0 ⋮ 2023-19-05
 
 ## <a id="preview"></a>👁️ 〢 Preview
 ![](https://i.imgur.com/RMQmuge.png)
-
+![](https://i.imgur.com/9tNi4Tj.png)
+![](https://i.imgur.com/6ZrO1D5.png)
+![](https://i.imgur.com/EOs2sAs.png)
+![](https://i.imgur.com/r4ACgLs.png)
+![](https://i.imgur.com/NGUzOiK.png)
+![](https://i.imgur.com/WZbCM7n.png)
 
 
 ### <a id="terms"></a>💼 〢 Terms Of Usage
