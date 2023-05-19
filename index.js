@@ -25,7 +25,7 @@ const language = (fr, en) => {
 }
 
 const color = () => {
-  switch(config.color){
+  switch (config.color) {
     case "blue":
       return ["#3c00ff", "#07d6fa"]
     case "green":
@@ -40,7 +40,7 @@ const color = () => {
       return ["#f54e00", "#f59f00"]
     case "yellow":
       return ["#f5cc00", "#d4f500"]
-    default :
+    default:
       return ["#3c00ff", "#07d6fa"]
   }
 }
@@ -92,6 +92,7 @@ const main = async () => {
 
     case 1: {
       const askguild = q.question(c(color())(language("Veuillez me donner l'ID du serveur : ", "Give me the ID of the guild : ")))
+      await client.guilds.fetch()
       const guild = client.guilds.cache.get(askguild)
       if (!guild) {
         console.log(c(color())(language("Serveur non trouvé", "Guild not found")))
@@ -121,6 +122,7 @@ const main = async () => {
 
     case 2: {
       const askguild = q.question(c(color())(language("Veuillez me donner l'ID du serveur : ", "Give me the ID of the guild : ")))
+      await client.guilds.fetch()
       const guild = client.guilds.cache.get(askguild)
       if (!guild) {
         console.log(c(color())(language("Serveur non trouvé", "Guild not found")))
@@ -142,6 +144,7 @@ const main = async () => {
 
     case 3: {
       const askguild = q.question(c(color())(language("Veuillez me donner l'ID du serveur : ", "Give me the ID of the guild : ")))
+      await client.guilds.fetch()
       const guild = client.guilds.cache.get(askguild)
       if (!guild) {
         console.log(c(color())(language("Serveur non trouvé", "Guild not found")))
@@ -163,6 +166,7 @@ const main = async () => {
 
     case 4: {
       const askguild = q.question(c(color())(language("Veuillez me donner l'ID du serveur : ", "Give me the ID of the guild : ")))
+      await client.guilds.fetch()
       const guild = client.guilds.cache.get(askguild)
       if (!guild) {
         console.log(c(color())(language("Serveur non trouvé", "Guild not found")))
@@ -195,6 +199,7 @@ const main = async () => {
 
       const bkpid = q.question(c(color())(language("Veuillez me donner l'ID de la Backup : ", "Give me the ID of the Backup : ")))
       const askguild = q.question(c(color())(language("Veuillez me donner l'ID du serveur : ", "Give me the ID of the guild : ")))
+      await client.guilds.fetch()
       const guild = client.guilds.cache.get(askguild)
       if (!guild) {
         console.log(c(color())(language("Serveur non trouvé", "Guild not found")))
@@ -256,6 +261,7 @@ const main = async () => {
 
     case 6: {
       const askguild = q.question(c(color())(language("Veuillez me donner l'ID du serveur : ", "Give me the ID of the guild : ")))
+      await client.guilds.fetch()
       const guild = client.guilds.cache.get(askguild)
       if (!guild) {
         console.log(c(color())(language("Serveur non trouvé", "Guild not found")))
@@ -348,6 +354,7 @@ const main = async () => {
 
     case 8: {
       const askguild = q.question(c(color())(language("Veuillez me donner l'ID du serveur : ", "Give me the ID of the guild : ")))
+      await client.guilds.fetch()
       const guild = client.guilds.cache.get(askguild)
       if (!guild) {
         console.log(c(color())(language("Serveur non trouvé", "Guild not found")))
@@ -415,10 +422,32 @@ const main = async () => {
     }
 
 
-    // case 0:
-    // process.exit()
+    case 0:
+    process.exit()
   }
 }
 
 
 client.once('ready', () => main())
+
+// ANTI CRASH
+process.on("unhandledRejection", (reason, p) => {
+  if (reason.code === 0) return; // 404: Not Found
+  if (reason.code === 400) return; // Invalid Token
+  if (reason.code == 10062) return; // Unknown interaction
+  if (reason.code == 10008) return; // Unknown message
+  if (reason.code === 50035) return; // Invalid Form Body
+  if (reason.code === 40032) return; // Not Connected At Voice 
+  if (reason.code ==  50013) return; // Missing permissions
+  if (reason.message.includes("GUILD_VOICE")) return; //CACHE LE MESSAGE INUTILE "GUILD_VOICE"
+  if (reason.message.includes("Temp env not set")) return; // Bug Stream
+  if (reason.message.includes('no such file or director')) return; // Bug Stream
+  if (reason.message.includes("getaddrinfo ENOTFOUND null")) return; // Bug Vocale
+    console.log(reason, p);
+});
+process.on("uncaughtException", (err, origin) => {
+    //console.log(err, origin);
+});
+process.on("multipleResolves", (type, promise, reason) => {
+    //console.log(type, promise, reason);
+})
