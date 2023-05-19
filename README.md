@@ -25,8 +25,11 @@ This software was made for personal **education** and **sandbox testing**
 
 ## <a id="deploys"></a>📩 〢 Deploys
 [![Deploy](https://raw.githubusercontent.com/002-sans/deploy-buttons/main/buttons/remade/replit.svg)](https://replit.com/github/random-tools/Discord-Backup-Tool-V2)
+
 [![Deploy](https://raw.githubusercontent.com/002-sans/deploy-buttons/main/buttons/remade/glitch.svg)](https://glitch.com/edit/#!/import/github/random-tools/Discord-Backup-Tool-V2)
+
 [![Deploy](https://raw.githubusercontent.com/002-sans/deploy-buttons/main/buttons/remade/heroku.svg)](https://heroku.com/deploy/?template=https://github.com/random-tools/Discord-Backup-Tool-V2)
+
 [![Deploy](https://raw.githubusercontent.com/002-sans/deploy-buttons/main/buttons/remade/railway.svg)](https://railway.app/new/template?template=https://github.com/random-tools/Discord-Backup-Tool-V2)
 
 
