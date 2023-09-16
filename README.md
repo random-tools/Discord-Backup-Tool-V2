@@ -91,7 +91,6 @@ v2.0 ⋮ 2023-19-05
 
 ### <a id="terms"></a>💼 〢 Terms Of Usage
 - [x] Educational purpose only
-- [x] Reselling is forbidden
 - [x] You can use the source code if you keep credits (in embed + in markdown), it has to be open-source
 - [x] We are NOT responsible of anything you do with our software (if its illegal)
 
