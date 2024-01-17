@@ -7,6 +7,7 @@ const backup = require('discord-backup')
 const c = require('gradient-string')
 const q = require('readline-sync')
 const fs = require('fs')
+const os = require("node:os")
 
 if (!fs.existsSync("./backups")) fs.mkdirSync("./backups")
 if (!fs.existsSync("./emotes")) fs.mkdirSync("./emotes")
@@ -58,29 +59,44 @@ const makeid = (length) => {
   return result;
 }
 
-client.login(config.token || process.env.token)
+client.login(config.token || process.env.token).catch((e) => {
+  console.log(`Error: ${e}`)
+  const token = q.question(language("Quel est le token du selfbot/bot : ", "What's the token of the selfbot/bot : "))
+  config.token = token
+  fs.writeFile(`./config.json`, JSON.stringify(config, null, 4), err => err ? console.log(err) : "")
+})
 
 const main = async () => {
   console.clear()
   console.log(c(color())(`
+  ${os.platform === "win32" ? 
+`      
       ██████╗  █████╗  ██████╗██╗  ██╗██╗   ██╗██████╗     ████████╗ ██████╗  ██████╗ ██╗         ██╗   ██╗██████╗ 
       ██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██║   ██║██╔══██╗    ╚══██╔══╝██╔═══██╗██╔═══██╗██║         ██║   ██║╚════██╗
       ██████╔╝███████║██║     █████╔╝ ██║   ██║██████╔╝       ██║   ██║   ██║██║   ██║██║         ██║   ██║ █████╔╝
       ██╔══██╗██╔══██║██║     ██╔═██╗ ██║   ██║██╔═══╝        ██║   ██║   ██║██║   ██║██║         ╚██╗ ██╔╝██╔═══╝ 
       ██████╔╝██║  ██║╚██████╗██║  ██╗╚██████╔╝██║            ██║   ╚██████╔╝╚██████╔╝███████╗     ╚████╔╝ ███████╗
-      ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝            ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝      ╚═══╝  ╚══════╝`))
+      ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝            ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝      ╚═══╝  ╚══════╝`:
+`______            _                  _____           _   _   _  _____ 
+| ___ \\          | |                |_   _|         | | | | | |/ __  \\
+| |_/ / __ _  ___| | ___   _ _ __     | | ___   ___ | | | | | |\\\`' / /'
+| ___ \\/ _\\\` |/ __| |/ / | | | '_ \\    | |/ _ \\ / _ \\| | | | | |  / /  
+| |_/ / (_| | (__|   <| |_| | |_) |   | | (_) | (_) | | \\ \\_/ /./ /___
+\\____/ \\__,_|\\___|_|\\_\\\__,_| .__/    \\_/\\___/ \\___/|_|  \\___/ \\_____/`}
+                              | |                                       
+                              |_|                                                                           `))
   console.log(c(color().reverse())("========================================================================================================================"))
   console.log(c(color())(`
-                                      [1] - ${language("Créé Une Backup", "Create A Backup")}
-                                      [2] - ${language("Créé Une Backup (Sans Chargement)", "Create A Backup (Without Loading)")}
-                                      [3] - ${language("Créé Une Backup Des Emotes", "Create A Backup Of Emotes")}
-                                      [4] - ${language("Créé Une Backup (Avec les Messages)", "Create A Backup (With Messages)")}
-                                      [5] - ${language("Charger une Backup", "Load A Backup")}
-                                      [6] - ${language("Supprime Les Tickets (Par nom)", "Delete Tickets (Delete By Name)")}
-                                      [7] - ${language("Supprime Les Tickets (d'une Categorie)", "Delete Tickets (Delete From Category)")}
-                                      [8] - ${language("Créé Un Modèle (Besoin de Permissions)", "Create A Template (need permissions)")}
-                                      [9] - ${language("Affiche La Liste Des Backups", "See The List Of Backups")}
-                                      [0] - ${language("Fermer", "Exit")}`))
+${os.platform === "win32" ? "                                      " : ""}[1] - ${language("Créé Une Backup", "Create A Backup")}
+${os.platform === "win32" ? "                                      " : ""}[2] - ${language("Créé Une Backup (Sans Chargement)", "Create A Backup (Without Loading)")}
+${os.platform === "win32" ? "                                      " : ""}[3] - ${language("Créé Une Backup Des Emotes", "Create A Backup Of Emotes")}
+${os.platform === "win32" ? "                                      " : ""}[4] - ${language("Créé Une Backup (Avec les Messages)", "Create A Backup (With Messages)")}
+${os.platform === "win32" ? "                                      " : ""}[5] - ${language("Charger une Backup", "Load A Backup")}
+${os.platform === "win32" ? "                                      " : ""}[6] - ${language("Supprime Les Tickets (Par nom)", "Delete Tickets (Delete By Name)")}
+${os.platform === "win32" ? "                                      " : ""}[7] - ${language("Supprime Les Tickets (d'une Categorie)", "Delete Tickets (Delete From Category)")}
+${os.platform === "win32" ? "                                      " : ""}[8] - ${language("Créé Un Modèle (Besoin de Permissions)", "Create A Template (need permissions)")}
+${os.platform === "win32" ? "                                      " : ""}[9] - ${language("Affiche La Liste Des Backups", "See The List Of Backups")}
+${os.platform === "win32" ? "                                      " : ""}[0] - ${language("Fermer", "Exit")}`))
   const choix = q.question(c(color())(language("Quel est votre Choix ? : ", "What's your Choice ? : ")))
 
   switch (parseInt(choix)) {
